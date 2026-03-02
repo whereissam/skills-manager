@@ -69,6 +69,7 @@
     "sync": "同步",
     "unsync": "取消同步",
     "enable": "启用",
+    "enabledButton": "已启用",
     "disable": "停用",
     "enableForScenario": "启用到当前场景",
     "disableForScenario": "从当前场景停用",

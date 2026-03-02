@@ -386,7 +386,7 @@ export function MySkills() {
 
                     <div className="mt-auto flex items-center justify-between gap-2 border-t border-border-subtle px-0 py-2">
                       <div className="flex min-w-0 items-center gap-1.5">
-                        <span className="inline-flex shrink-0 items-center gap-1 text-[10px] text-faint">
+                        <span className="inline-flex shrink-0 items-center gap-1 text-[10px] text-muted">
                           {sourceIcon(skill.source_type)}
                           {sourceTypeLabel(skill)}
                         </span>
@@ -401,28 +401,28 @@ export function MySkills() {
                         </span>
                       </div>
                       <div className="flex items-center gap-1 shrink-0">
-                        <button
-                          onClick={() => handleToggleScenario(skill)}
-                          disabled={!activeScenario}
-                          className={cn(
-                            "rounded px-2 py-0.5 text-[11px] font-medium transition-colors outline-none",
-                            enabledInScenario
-                              ? "text-accent-light hover:bg-accent-bg"
-                              : "text-muted hover:bg-surface-hover hover:text-secondary"
-                          )}
-                        >
-                          {enabledInScenario ? t("mySkills.disable") : t("mySkills.enable")}
-                        </button>
-                        <button
-                          onClick={() => (isSynced ? handleUnsync(skill) : handleSync(skill))}
-                          className={cn(
-                            "rounded px-2 py-0.5 text-[11px] font-medium transition-colors outline-none",
-                            isSynced
-                              ? "text-tertiary hover:bg-surface-hover hover:text-red-400"
-                              : "text-accent-light hover:bg-accent-bg"
-                          )}
-                        >
-                          {isSynced ? t("mySkills.synced") : t("mySkills.sync")}
+                      <button
+                        onClick={() => handleToggleScenario(skill)}
+                        disabled={!activeScenario}
+                        className={cn(
+                          "rounded px-2 py-0.5 text-[11px] font-medium transition-colors outline-none",
+                          enabledInScenario
+                            ? "text-accent-light hover:bg-accent-bg"
+                            : "text-muted hover:bg-surface-hover hover:text-secondary"
+                        )}
+                      >
+                        {enabledInScenario ? t("mySkills.enabledButton") : t("mySkills.enable")}
+                      </button>
+                      <button
+                        onClick={() => (isSynced ? handleUnsync(skill) : handleSync(skill))}
+                        className={cn(
+                          "rounded px-2 py-0.5 text-[11px] font-medium transition-colors outline-none",
+                          isSynced
+                            ? "text-accent-light hover:bg-accent-bg"
+                            : "text-accent-light hover:bg-accent-bg"
+                        )}
+                      >
+                        {isSynced ? t("mySkills.synced") : t("mySkills.sync")}
                         </button>
                       </div>
                     </div>
@@ -456,7 +456,7 @@ export function MySkills() {
                 </p>
 
                 <div className="flex shrink-0 items-center gap-2">
-                  <span className="inline-flex items-center gap-1 text-[10px] text-faint">
+                  <span className="inline-flex items-center gap-1 text-[10px] text-muted">
                     {sourceIcon(skill.source_type)}
                     {sourceTypeLabel(skill)}
                   </span>
@@ -481,14 +481,14 @@ export function MySkills() {
                         : "text-muted hover:bg-surface-hover hover:text-secondary"
                     )}
                   >
-                    {enabledInScenario ? t("mySkills.disable") : t("mySkills.enable")}
+                    {enabledInScenario ? t("mySkills.enabledButton") : t("mySkills.enable")}
                   </button>
                   <button
                     onClick={() => (isSynced ? handleUnsync(skill) : handleSync(skill))}
                     className={cn(
                       "rounded px-2 py-0.5 text-[11px] font-medium transition-colors outline-none",
                       isSynced
-                        ? "text-tertiary hover:text-red-400"
+                        ? "text-accent-light hover:bg-accent-bg"
                         : "text-accent-light hover:bg-accent-bg"
                     )}
                   >

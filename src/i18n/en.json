@@ -69,6 +69,7 @@
     "sync": "Sync",
     "unsync": "Unsync",
     "enable": "Enable",
+    "enabledButton": "Enabled",
     "disable": "Disable",
     "enableForScenario": "Enable for current scenario",
     "disableForScenario": "Disable for current scenario",
