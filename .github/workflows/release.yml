@@ -121,7 +121,7 @@ jobs:
             exit 1
           fi
 
-          if ! echo "$asset_names" | grep -qE '\\.sig$'; then
+          if ! echo "$asset_names" | grep -q '\.sig'; then
             echo "Missing updater signature assets (*.sig)"
             exit 1
           fi
