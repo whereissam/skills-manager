@@ -260,10 +260,10 @@ export function MySkills() {
     try {
       await api.checkAllSkillUpdates(true);
       toast.success(t("mySkills.updateActions.checkedAll"));
-      await refreshManagedSkills();
     } catch (e: any) {
       toast.error(e.toString());
     } finally {
+      await refreshManagedSkills();
       setCheckingAll(false);
     }
   };

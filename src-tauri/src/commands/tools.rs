@@ -11,16 +11,20 @@ pub struct ToolInfoDto {
 }
 
 #[tauri::command]
-pub fn get_tool_status() -> Result<Vec<ToolInfoDto>, String> {
-    let adapters = tool_adapters::default_tool_adapters();
-    let result: Vec<ToolInfoDto> = adapters
-        .into_iter()
-        .map(|a| ToolInfoDto {
-            key: a.key.clone(),
-            display_name: a.display_name.clone(),
-            installed: a.is_installed(),
-            skills_dir: a.skills_dir().to_string_lossy().to_string(),
-        })
-        .collect();
-    Ok(result)
+pub async fn get_tool_status() -> Result<Vec<ToolInfoDto>, String> {
+    tauri::async_runtime::spawn_blocking(|| {
+        let adapters = tool_adapters::default_tool_adapters();
+        let result: Vec<ToolInfoDto> = adapters
+            .into_iter()
+            .map(|a| ToolInfoDto {
+                key: a.key.clone(),
+                display_name: a.display_name.clone(),
+                installed: a.is_installed(),
+                skills_dir: a.skills_dir().to_string_lossy().to_string(),
+            })
+            .collect();
+        Ok(result)
+    })
+    .await
+    .map_err(|e| e.to_string())?
 }

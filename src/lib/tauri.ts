@@ -143,7 +143,7 @@ export const checkSkillUpdate = (skillId: string, force?: boolean) =>
   });
 
 export const checkAllSkillUpdates = (force?: boolean) =>
-  invoke<ManagedSkill[]>("check_all_skill_updates", {
+  invoke<void>("check_all_skill_updates", {
     force: force ?? false,
   });
 
