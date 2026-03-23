@@ -115,6 +115,8 @@
     "ready": "Ready",
     "standby": "Standby",
     "agentTogglesTitle": "Agent Toggles",
+    "expandAgentToggles": "Expand",
+    "collapseAgentToggles": "Collapse",
     "agentToggleEnabled": "{{agent}} enabled",
     "agentToggleDisabled": "{{agent}} disabled",
     "agentToggleNotInstalled": "Not installed",
