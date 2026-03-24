@@ -656,6 +656,21 @@ export function InstallSkills() {
     return entries;
   }, [filteredMarketSkills, marketSourceFilter, debouncedMarketQuery]);
 
+  const collapsedSources = useMemo(() => {
+    const sources: string[] = [];
+    for (const entry of groupedMarketEntries) {
+      if (entry.type === "collapsed") {
+        sources.push(entry.source);
+      }
+    }
+    return sources;
+  }, [groupedMarketEntries]);
+
+  const allCollapsedExpanded = useMemo(
+    () => collapsedSources.length > 0 && collapsedSources.every((source) => expandedSources.has(source)),
+    [collapsedSources, expandedSources]
+  );
+
   // Expand collapsed entries based on expandedSources
   const visibleMarketEntries = useMemo<MarketEntry[]>(() => {
     const result: MarketEntry[] = [];
@@ -769,6 +784,26 @@ export function InstallSkills() {
                     </span>
                     <span className="text-faint">·</span>
                     <span>{t("install.filters.filteredCount", { count: filteredMarketSkills.length })}</span>
+                    {!hasMarketQuery && marketSourceFilter === "all" && collapsedSources.length > 0 ? (
+                      <>
+                        <span className="text-faint">·</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (allCollapsedExpanded) {
+                              setExpandedSources(new Set());
+                              return;
+                            }
+                            setExpandedSources(new Set(collapsedSources));
+                          }}
+                          className="rounded-[5px] border border-border-subtle bg-background px-2 py-0.5 text-[12px] font-medium text-muted transition-colors hover:text-secondary"
+                        >
+                          {allCollapsedExpanded
+                            ? t("install.collapseAllSources", { defaultValue: "Collapse groups" })
+                            : t("install.expandAllSources", { defaultValue: "Expand all groups" })}
+                        </button>
+                      </>
+                    ) : null}
                   </div>
                 </div>
 
